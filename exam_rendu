@@ -1,0 +1,34 @@
+#!/usr/bin/env python3.3
+
+import ftplib
+import getpass
+import sys
+import subprocess
+import os
+
+exam_server = '10.40.0.116'
+
+if __name__ == '__main__':
+	print('Welcome.')
+	login = input('Enter login: ')
+	passwd = getpass.getpass()
+
+	ftp = ftplib.FTP(exam_server)
+	try:
+		ftp.login(user=login, passwd=passwd)
+	except ftplib.all_errors:
+		print('Error while upload')
+		print('Bad password ?')
+		sys.exit(1)
+
+	os.chdir('/home/exam/')
+	subprocess.call('tar -czf /tmp/rendu.tgz rendu', shell=True)
+
+	try:
+		ftp.storbinary('STOR rendu.tgz', open('/tmp/rendu.tgz', 'rb'))
+	except ftplib.all_errors:
+		print('Error while pushing tarball')
+		sys.exit(1)
+
+	sys.exit(0)
+

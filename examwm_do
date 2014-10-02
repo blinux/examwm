@@ -1,0 +1,51 @@
+#!/bin/sh
+
+error() {
+	echo 'Something went wrong.'
+	echo 'Press enter to logout.'
+	read
+
+	exit 1
+}
+
+find_wlan() {
+    wlan=`hwinfo --wlan --short | sed '1d' | awk '{print $1}' | head -n 1`
+
+    echo ${wlan}
+}
+
+find_lans() {
+    if [ -z "$1" ]; then
+        lans=`hwinfo --netcard --short | sed '1d' | awk '{print $1}' | xargs echo | head -n 1`
+    else
+        lans=`hwinfo --netcard --short | grep -v $1 | sed '1d' | awk '{print $1}' | xargs echo | head -n 1`
+    fi
+
+    echo ${lans}
+}
+
+wlan=`find_wlan`
+lan=`find_lans ${wlan}`
+touch /tmp/exam_bad
+xrefresh
+sleep 1
+
+ip_wlan=`ifconfig ${wlan}  | grep 'inet addr' | awk '{print $2}' | cut -d ':' -f 2`
+ip_lan=`ifconfig ${lan}  | grep 'inet addr' | awk '{print $2}' | cut -d ':' -f 2`
+
+if [ -z "${ip_wlan}" ] && [ -z "${ip_lan}" ] ; then
+	echo "Network isn't setup"
+	echo "Press Enter to start wpa_gui"
+	read
+	wpa_gui
+fi
+
+echo 'My IP address is : '
+ifconfig -a | grep 'inet addr:' | grep -v 127.0.0.1 | awk '{print $2}' | cut -d ':' -f 2
+
+echo 'Updating the packages if needed'
+pkcon refresh
+pkcon update
+/usr/bin/exam_get_subject || error
+
+rm /tmp/exam_bad

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+rm -rf /tmp/*
+
+xterm -e /usr/bin/examwm_do 
+
+if [ -f /tmp/exam_bad ]; then
+	exit
+fi
+
+icewm-session &
+/usr/bin/dclock -exam -timeout `cat /home/exam/sujet/time`
+
+pkill icewm
+
+xterm -e /usr/bin/exam_rendu
