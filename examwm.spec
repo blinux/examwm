@@ -24,7 +24,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 Name:		examwm
-Version:        0.5
+Version:        0.8
 Release:        0
 Summary:        EXAM Window Manager
 License:        BSD-2-Clause
@@ -55,11 +55,15 @@ Window manager for Blinux exam mode
 %install
 mkdir -p %{buildroot}/%{_bindir}
 mkdir -p %{buildroot}/usr/share/xsessions/
+mkdir -p %{buildroot}/home/exam/end/
+mkdir -p %{buildroot}/home/exam/rendu/
+mkdir -p %{buildroot}/home/exam/sujet/
 install -D -p -m 755 %{SOURCE0} %{buildroot}/%{_bindir}/
 install -D -p -m 755 %{SOURCE1} %{buildroot}/%{_bindir}/
 install -D -p -m 755 %{SOURCE3} %{buildroot}/%{_bindir}/
 install -D -p -m 755 %{SOURCE4} %{buildroot}/%{_bindir}/
 install -D -p -m 755 %{SOURCE2} %{buildroot}/usr/share/xsessions/
+touch %{buildroot}/home/exam/end/time
 
 %clean
 rm -rf %{buildroot}
@@ -74,9 +78,16 @@ rm -f /usr/share/xsessions/icewm.desktop
 %{_bindir}/exam_get_subject
 %{_bindir}/exam_rendu
 /usr/share/xsessions/examwm.desktop
+%attr(0755, exam, users) /home/exam/end/
+%attr(0755, exam, users) /home/exam/end/time
+%attr(0755, exam, users) /home/exam/rendu/
+%attr(0755, exam, users) /home/exam/sujet/
 
 %changelog
-* Thu Aug 28 2014 Emmanuel Vadot <elbarto@bocal.org> - 0.4-0
+* Sat Oct 04 2014 Emmanuel Vadot <elbarto@bocal.org> - 0.6-0
+- Update exam_rendu
+
+* Thu Aug 28 2014 Emmanuel Vadot <elbarto@bocal.org> - 0.5-0
 - Update examwm_do
 
 * Thu Aug 28 2014 Emmanuel Vadot <elbarto@bocal.org> - 0.4-0

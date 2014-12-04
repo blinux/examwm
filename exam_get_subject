@@ -48,7 +48,11 @@ if __name__ == '__main__':
 		print('Clean directories')
 		try:
 			subprocess.call('rm -rf /home/exam/rendu/*', shell=True)
+			subprocess.call('rm -rf /home/exam/rendu/.*', shell=True)
 			subprocess.call('rm -rf /home/exam/sujet/*', shell=True)
+			subprocess.call('rm -rf /home/exam/sujet/.*', shell=True)
+			subprocess.call('rm -rf /home/exam/end/*', shell=True)
+			subprocess.call('rm -rf /home/exam/end/.*', shell=True)
 		except:
 			print('Something went wrong')
 			sys.exit(1)
