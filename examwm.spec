@@ -24,7 +24,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 Name:		examwm
-Version:        0.8
+Version:        0.10
 Release:        0
 Summary:        EXAM Window Manager
 License:        BSD-2-Clause
@@ -70,6 +70,12 @@ rm -rf %{buildroot}
 
 %post
 rm -f /usr/share/xsessions/icewm.desktop
+mkdir /home/exam/.gnome2/
+mkdir /home/exam/.gnome2_private/
+mkdir /home/exam/.config/terminator/
+chown exam:users /home/exam/.gnome2/
+chown exam:users /home/exam/.gnome2_private/
+chown exam:users /home/exam/.config/terminator/
 
 %files
 %defattr(-,root,root)
