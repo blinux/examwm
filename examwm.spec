@@ -24,7 +24,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 Name:		examwm
-Version:        0.10
+Version:        0.11
 Release:        0
 Summary:        EXAM Window Manager
 License:        BSD-2-Clause
