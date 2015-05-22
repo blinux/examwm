@@ -1,5 +1,11 @@
 #!/bin/sh
 
+ID=`id -u`
+
+if [ "${ID}" = "0" ]; then
+    exit
+fi
+
 rm -rf /tmp/*
 
 xterm -e /usr/bin/examwm_do 
