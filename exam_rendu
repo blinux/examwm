@@ -6,14 +6,12 @@ import sys
 import subprocess
 import os
 
-exam_server = '10.40.0.116'
-
 if __name__ == '__main__':
 	print('Welcome.')
 	login = input('Enter login: ')
 	passwd = getpass.getpass().replace('=', ' ')
 
-	ftp = ftplib.FTP(exam_server)
+	ftp = ftplib.FTP('exam.epitech.eu')
 	try:
 		ftp.login(user=login, passwd=passwd)
 	except ftplib.all_errors:
