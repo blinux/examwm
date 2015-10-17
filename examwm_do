@@ -43,9 +43,6 @@ fi
 echo 'My IP address is : '
 ifconfig -a | grep 'inet addr:' | grep -v 127.0.0.1 | awk '{print $2}' | cut -d ':' -f 2
 
-echo 'Updating the packages if needed'
-pkcon refresh
-pkcon update
 /usr/bin/exam_get_subject || error
 
 rm /tmp/exam_bad
