@@ -1,5 +1,5 @@
 #-
-# Copyright 2014 Emmanuel Vadot <elbarto@bocal.org>
+# Copyright 2015 Emmanuel Vadot <elbarto@bocal.org>
 # All rights reserved
 #
 # Redistribution and use in source and binary forms, with or without
@@ -24,7 +24,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 Name:		examwm
-Version:        0.12
+Version:        0.13
 Release:        0
 Summary:        EXAM Window Manager
 License:        BSD-2-Clause
